@@ -48,17 +48,12 @@ size_t read_entire_file (char **buf, FILE *file_ptr)
     int num_of_lines = count_lines(*buf);
     printf("num of lines = %d\n", num_of_lines);
 
-    /*
-    if (bytes_read != file_size) {
-        printf("Error reading file\n");
-        free(buf);
-        fclose(file_ptr);
-        return 0;
-    }
-    */
-
+    #ifdef __WIN32
     *(*buf + file_size - num_of_lines) = '\0';
-
+    #else 
+    *(*buf + file_size) = '\0';
+    #endif 
+    
     return bytes_read;
 }
 
