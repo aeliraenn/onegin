@@ -7,12 +7,14 @@
 #include <errno.h>
 #include <ctype.h>
 
+#include "structures.h"
+
 #define sep "\n-------------------------------------------------------------------------\n\n"
 #define sprintf(A) printf(sep A sep)
 
 int         count_lines  (char *buf);
-int         my_strcmp    (char *str1, char *str2);
-int         my_rstrcmp   (char *str1, char *str2);
+int         my_strcmp    (str_and_len *str1, str_and_len *str2);
+int         my_rstrcmp   (str_and_len *str1, str_and_len *str2);
 char*       my_strncpy   (char *dest, const char *source, int lim);
 char*       my_strncpy1  (char *dest, const char *source, int lim);
 char*       my_strncat   (char *dest, const char *src, int lim);

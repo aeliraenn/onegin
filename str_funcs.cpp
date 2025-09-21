@@ -33,39 +33,36 @@ char* my_strncpy (char *dest, const char *source, int lim) {
     return pdest;
 }
 
-int my_rstrcmp(char *str1, char *str2)
+int my_rstrcmp(str_and_len *str1, str_and_len *str2)
 {
     assert(str1);
     assert(str2);
 
-    int len1 = my_strlen((const char *)str1);
-    int len2 = my_strlen((const char *)str2);
+    size_t i = (str1->len) - 1;
+    size_t j = (str2->len) - 1;
 
-    int i = len1 - 1;
-    int j = len2 - 1;
-
-    while (i >= 0 && !isalpha(str1[i])) {
+    while (i >= 0 && !isalpha((str1->str)[i])) {
         i--;
     }
-    while (j >= 0 && !isalpha(str2[j])) {
+    while (j >= 0 && !isalpha((str2->str)[j])) {
         j--;
     }
 
     while (i >= 0 && j >= 0) {
-        if (tolower(str1[i]) > tolower(str2[j])) {
+        if (tolower((str1->str)[i]) > tolower((str2->str)[j])) {
             return 1;
         }
-        if (tolower(str1[i]) < tolower(str2[j])) {
+        if (tolower((str1->str)[i]) < tolower((str2->str)[j])) {
             return -1;
         }
 
         i--;
         j--;
 
-        while (i >= 0 && !isalpha(str1[i])) {
+        while (i >= 0 && !isalpha((str1->str)[i])) {
             i--;
         }
-        while (j >= 0 && !isalpha(str2[j])) {
+        while (j >= 0 && !isalpha((str2->str)[j])) {
             j--;
         }
     }
@@ -74,7 +71,7 @@ int my_rstrcmp(char *str1, char *str2)
     if (j == 0)           return  1;
 }
 
-int my_strcmp(char *str1, char *str2)
+int my_strcmp(str_and_len *str1, str_and_len *str2)
 {
     assert(str1);
     assert(str2);
@@ -82,34 +79,34 @@ int my_strcmp(char *str1, char *str2)
     int i = 0;
     int j = 0;
 
-    while (str1[i] != '\0' && !isalpha(str1[i])) {
+    while ((str1->str)[i] != '\0' && !isalpha((str1->str)[i])) {
         i++;
     }
-    while (str2[j] != '\0' && !isalpha(str2[j])) {
+    while ((str2->str)[j] != '\0' && !isalpha((str2->str)[j])) {
         j++;
     }
 
-    while (str1[i] != '\0' && str2[j] != '\0') {
-        if (tolower(str1[i]) > tolower(str2[j])) {
+    while ((str1->str)[i] != '\0' && (str2->str)[j] != '\0') {
+        if (tolower((str1->str)[i]) > tolower((str2->str)[j])) {
             return 1;
         }
-        if (tolower(str1[i]) < tolower(str2[j])) {
+        if (tolower((str1->str)[i]) < tolower((str2->str)[j])) {
             return -1;
         }
 
         i++;
         j++;
 
-        while (str1[i] != '\0' && !isalpha(str1[i])) {
+        while ((str1->str)[i] != '\0' && !isalpha((str1->str)[i])) {
             i++;
         }
-        while (str2[j] != '\0' && !isalpha(str2[j])) {
+        while ((str2->str)[j] != '\0' && !isalpha((str2->str)[j])) {
             j++;
         }
     }
-    if (str1[i] == '\0' && str2[j] == '\0') return  0;
-    if (str1[i] == '\0')                    return -1;
-    if (str2[j] == '\0')                    return  1;
+    if ((str1->str)[i] == '\0' && (str2->str)[j] == '\0') return  0;
+    if ((str1->str)[i] == '\0')                    return -1;
+    if ((str2->str)[j] == '\0')                    return  1;
 }
 
 char* my_strncpy1 (char *dest, const char *source, int lim) {
@@ -333,7 +330,7 @@ int my_atoi (const char* str) {
         i++;
     }
 
-    for (i; str[i] >= '0' && str[i] <='9'; i++) {
+    for (; str[i] >= '0' && str[i] <='9'; i++) {
         num = 10 * num + (str[i] - '0');
     }
 
