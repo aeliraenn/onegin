@@ -1,4 +1,4 @@
-#include "read_from_a_file.h"
+#include "../inc/read_from_a_file.h"
 
 
 size_t get_file_size (FILE *file_ptr) {  //stat is unavailable on windows??

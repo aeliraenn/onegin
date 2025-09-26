@@ -1,4 +1,4 @@
-#include "str_funcs.h"
+#include "../inc/str_funcs.h"
 
 int count_lines(char *buf) {
     assert(buf);
@@ -38,8 +38,8 @@ int my_rstrcmp(str_and_len *str1, str_and_len *str2)
     assert(str1);
     assert(str2);
 
-    size_t i = (str1->len) - 1;
-    size_t j = (str2->len) - 1;
+    int i = (str1->len) - 1;
+    int j = (str2->len) - 1;
 
     while (i >= 0 && j >= 0) {
         while (i >= 0 && !isalpha((str1->str)[i])) {

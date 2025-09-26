@@ -1,4 +1,4 @@
-#include "sort.h"
+#include "../inc/sort.h"
 
 void swap (void* obj1, void* obj2, size_t obj_size) {
     assert(obj1);

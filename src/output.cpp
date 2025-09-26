@@ -1,4 +1,4 @@
-#include "output.h"
+#include "../inc/output.h"
 
 void print_arr (str_and_len **ptr_array, int num_of_lines)
 {

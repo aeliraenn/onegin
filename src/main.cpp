@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "str_funcs.h"
-#include "sort.h"
-#include "read_from_a_file.h"
-#include "output.h"
+#include "../inc/str_funcs.h"
+#include "../inc/sort.h"
+#include "../inc/read_from_a_file.h"
+#include "../inc/output.h"
 
 int main()
 {
