@@ -25,9 +25,11 @@ int read_file (char *ptr_array[], FILE *src_file)
     return i; //returns the number of read lines
 }
 
-size_t read_entire_file (char **buf, FILE *file_ptr)
+size_t read_entire_file (char **buf)
 {
     assert(buf);
+    
+    FILE *file_ptr = fopen("onegin.txt", "r");
     assert(file_ptr);
 
     size_t file_size = get_file_size(file_ptr);
@@ -42,6 +44,7 @@ size_t read_entire_file (char **buf, FILE *file_ptr)
     }
 
     size_t bytes_read = fread(*buf, sizeof(char), file_size, file_ptr);
+    assert(buf);
     printf("bytes read = %zu\n", bytes_read);
 
     int num_of_lines = count_lines(*buf);
@@ -53,6 +56,10 @@ size_t read_entire_file (char **buf, FILE *file_ptr)
     *(*buf + file_size) = '\0';
     #endif 
     
+    int file_close_returned = fclose(file_ptr);
+    if (file_close_returned != 0) {
+        printf("Error closing file");
+    }
     return bytes_read;
 }
 
@@ -67,6 +74,7 @@ size_t get_string_from_buffer(char** string_ptr, char** buf)
         (*buf)++;
         string_len++;
     }
+    if (**buf == '\n') string_len++;
     **buf = '\0';
     (*buf)++;
     return string_len;
@@ -106,6 +114,7 @@ str_and_len** create_ptr_array (char **buf, int num_of_lines)
         ptr_array[i] = (str_and_len*)calloc(1, sizeof(str_and_len));
         assert(ptr_array[i]);
         ptr_array[i]->len = get_string_from_buffer(&(ptr_array[i]->str), buf);
+        //printf("len of \'%s\' = %zu\n", ptr_array[i]->str, ptr_array[i]->len);
     }
 
     return ptr_array;

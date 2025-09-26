@@ -41,34 +41,28 @@ int my_rstrcmp(str_and_len *str1, str_and_len *str2)
     size_t i = (str1->len) - 1;
     size_t j = (str2->len) - 1;
 
-    while (i >= 0 && !isalpha((str1->str)[i])) {
-        i--;
-    }
-    while (j >= 0 && !isalpha((str2->str)[j])) {
-        j--;
-    }
-
     while (i >= 0 && j >= 0) {
-        if (tolower((str1->str)[i]) > tolower((str2->str)[j])) {
-            return 1;
-        }
-        if (tolower((str1->str)[i]) < tolower((str2->str)[j])) {
-            return -1;
-        }
-
-        i--;
-        j--;
-
         while (i >= 0 && !isalpha((str1->str)[i])) {
             i--;
         }
         while (j >= 0 && !isalpha((str2->str)[j])) {
             j--;
         }
+
+        if (tolower((str1->str)[i]) > tolower((str2->str)[j])) {
+            return 1;
+        }
+        else if (tolower((str1->str)[i]) < tolower((str2->str)[j])) {
+            return -1;
+        }
+
+        i--;
+        j--;
     }
-    if (i == 0 && j == 0) return  0;
-    if (i == 0)           return -1;
-    if (j == 0)           return  1;
+
+    if (i == -1 && j == -1) return  0;
+    if (i == -1)            return -1;
+    if (j == -1)            return  1;
 }
 
 int my_strcmp(str_and_len *str1, str_and_len *str2)
@@ -79,14 +73,16 @@ int my_strcmp(str_and_len *str1, str_and_len *str2)
     int i = 0;
     int j = 0;
 
-    while ((str1->str)[i] != '\0' && !isalpha((str1->str)[i])) {
-        i++;
-    }
-    while ((str2->str)[j] != '\0' && !isalpha((str2->str)[j])) {
-        j++;
-    }
+    
 
     while ((str1->str)[i] != '\0' && (str2->str)[j] != '\0') {
+        while ((str1->str)[i] != '\0' && !isalpha((str1->str)[i])) {
+            i++;
+        }
+        while ((str2->str)[j] != '\0' && !isalpha((str2->str)[j])) {
+            j++;
+        }
+
         if (tolower((str1->str)[i]) > tolower((str2->str)[j])) {
             return 1;
         }
