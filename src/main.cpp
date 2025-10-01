@@ -11,8 +11,6 @@ int main()
     char *buf = NULL;
     read_entire_file(&buf);
 
-    //printf("%s\n", buf);
-
     int num_of_lines = count_lines(buf);
     printf("num of lines in main = %d\n", num_of_lines);
 
