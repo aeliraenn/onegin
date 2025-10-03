@@ -11,25 +11,11 @@ size_t get_file_size (FILE *file_ptr) {  //stat is unavailable on windows??
     return file_size;
 }
 
-int read_file (char *ptr_array[], FILE *src_file)
-{
-    assert(ptr_array);
-    assert(src_file);
-
-    int i = 0;
-    size_t line_size = 0;
-    while (my_getline(&ptr_array[i], &line_size, src_file) != -1) {
-        i++;
-    }
-
-    return i; //returns the number of read lines
-}
-
 size_t read_entire_file (char **buf)
 {
     assert(buf);
     
-    FILE *file_ptr = fopen("onegin.txt", "r");
+    FILE *file_ptr = fopen("input.txt", "r");
     assert(file_ptr);
 
     size_t file_size = get_file_size(file_ptr);
@@ -58,8 +44,9 @@ size_t read_entire_file (char **buf)
     
     int file_close_returned = fclose(file_ptr);
     if (file_close_returned != 0) {
-        printf("Error closing file");
+        printf("Error closing input file\n");
     }
+
     return bytes_read;
 }
 
@@ -69,14 +56,17 @@ size_t get_string_from_buffer(char** string_ptr, char** buf)
     assert(buf);
 
     *string_ptr = *buf;
+
     size_t string_len = 0;
     while(**buf != '\0' && **buf != '\n') {
         (*buf)++;
         string_len++;
     }
     if (**buf == '\n') string_len++;
+
     **buf = '\0';
     (*buf)++;
+    
     return string_len;
 }
 
@@ -113,7 +103,9 @@ str_and_len** create_ptr_array (char **buf, int num_of_lines)
     for (int i = 0; i < num_of_lines; i++) {
         ptr_array[i] = (str_and_len*)calloc(1, sizeof(str_and_len));
         assert(ptr_array[i]);
+        
         ptr_array[i]->len = get_string_from_buffer(&(ptr_array[i]->str), buf);
+        
         //printf("len of \'%s\' = %zu\n", ptr_array[i]->str, ptr_array[i]->len);
     }
 

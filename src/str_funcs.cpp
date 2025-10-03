@@ -33,10 +33,13 @@ char* my_strncpy (char *dest, const char *source, int lim) {
     return pdest;
 }
 
-int my_rstrcmp(str_and_len *str1, str_and_len *str2)
+int my_rstrcmp(const void *obj1, const void *obj2)
 {
-    assert(str1);
-    assert(str2);
+    assert(obj1);
+    assert(obj2);
+
+    str_and_len* str1 = (*(str_and_len**)obj1);
+    str_and_len* str2 = (*(str_and_len**)obj2);
 
     int i = (str1->len) - 1;
     int j = (str2->len) - 1;

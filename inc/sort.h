@@ -12,6 +12,6 @@
 typedef int(*function_ptr)(str_and_len *, str_and_len *);
 
 void bubble_sort (str_and_len **ptr_array, int num_of_lines, function_ptr cmp);
-void swap (void* obj1, void* obj2, size_t obj_size);
+void swap (str_and_len** obj1, str_and_len** obj2);
 
 #endif

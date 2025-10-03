@@ -8,7 +8,6 @@
 #include "str_funcs.h"
 #include "structures.h"
 
-int            read_file                (char *ptr_array[], FILE *src_file);
 size_t         get_file_size            (FILE *file_ptr);
 size_t         read_entire_file         (char **buf);
 size_t         get_string_from_buffer   (char** string_ptr, char** buf);

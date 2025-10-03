@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include "../inc/str_funcs.h"
-#include "../inc/sort.h"
 #include "../inc/read_from_a_file.h"
 #include "../inc/output.h"
 
@@ -18,13 +17,7 @@ int main()
     //sprintf("array of pointers created\n");
     //print_arr(ptr_array, num_of_lines);
 
-    bubble_sort(ptr_array, num_of_lines, &my_strcmp);
-    sprintf("array of pointers alphabetically sorted\n");
-    print_arr(ptr_array, num_of_lines);
-
-    bubble_sort(ptr_array, num_of_lines, &my_rstrcmp);
-    sprintf("array of pointers rhyme-based sorted\n");
-    print_arr(ptr_array, num_of_lines);
+    create_output_file(ptr_array, num_of_lines, "output.txt");
 
     return 0;
 }

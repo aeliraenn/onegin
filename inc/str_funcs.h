@@ -14,7 +14,7 @@
 
 int         count_lines  (char *buf);
 int         my_strcmp    (str_and_len *str1, str_and_len *str2);
-int         my_rstrcmp   (str_and_len *str1, str_and_len *str2);
+int         my_rstrcmp   (const void *str1, const void *str2);
 char*       my_strncpy   (char *dest, const char *source, int lim);
 char*       my_strncpy1  (char *dest, const char *source, int lim);
 char*       my_strncat   (char *dest, const char *src, int lim);
